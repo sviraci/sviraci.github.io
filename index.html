@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cashya — Haushaltsbuch &amp; Ausgaben-Tracker</title>
+<meta name="description" content="Cashya ist eine persönliche Finanz-App für iOS und Android. Einnahmen und Ausgaben erfassen, Prioritäten erkennen, Vermögen im Blick behalten — alle Daten bleiben auf deinem Gerät.">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root{
+    --bg:#0a1514; --panel:#0f201e; --line:#1d3a37;
+    --text:#e8f3f1; --muted:#9ab5b1; --accent:#1fbfa6; --accent-2:#00e5a0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    background:var(--bg); color:var(--text);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:28px 20px 72px}
+  header{text-align:center;padding:28px 0 10px}
+  .logo{width:96px;height:96px;border-radius:22px;display:block;margin:0 auto 18px;
+        box-shadow:0 10px 30px rgba(0,0,0,.45)}
+  h1{font-size:2.1rem;margin:0 0 6px;letter-spacing:-.02em}
+  .tagline{color:var(--muted);margin:0 0 22px;font-size:1.05rem}
+  .langbar{display:flex;gap:8px;justify-content:center;margin:0 0 34px}
+  .langbar button{
+    background:var(--panel);color:var(--muted);border:1px solid var(--line);
+    border-radius:999px;padding:7px 16px;font-size:.9rem;cursor:pointer;font-family:inherit;
+  }
+  .langbar button[aria-pressed="true"]{background:var(--accent);color:#04100f;border-color:var(--accent);font-weight:600}
+  .stores{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:0 0 40px}
+  .store{
+    display:inline-block;padding:13px 22px;border-radius:14px;text-decoration:none;
+    background:var(--accent);color:#04100f;font-weight:600;font-size:.95rem;
+  }
+  .store.alt{background:transparent;color:var(--text);border:1px solid var(--line)}
+  section{background:var(--panel);border:1px solid var(--line);border-radius:18px;
+          padding:22px 24px;margin:0 0 16px}
+  h2{font-size:1.15rem;margin:0 0 12px;color:var(--accent-2);letter-spacing:-.01em}
+  p{margin:0 0 12px}
+  ul{margin:0;padding-left:20px}
+  li{margin:0 0 8px}
+  li strong{color:var(--text)}
+  .muted{color:var(--muted)}
+  footer{margin-top:34px;text-align:center;color:var(--muted);font-size:.9rem;line-height:2}
+  footer a{color:var(--accent);text-decoration:none}
+  footer a:hover{text-decoration:underline}
+  .sep{color:var(--line);margin:0 8px}
+  [data-lang]{display:none}
+  [data-lang].on{display:block}
+  @media (max-width:520px){ h1{font-size:1.7rem} .wrap{padding-top:16px} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <img class="logo" src="icon.png" alt="Cashya">
+    <h1>Cashya</h1>
+    <p class="tagline">
+      <span data-lang="de" class="on">Haushaltsbuch für Einnahmen und Ausgaben</span>
+      <span data-lang="en">Household budget book for income and expenses</span>
+    </p>
+  </header>
+
+  <div class="langbar">
+    <button id="btn-de" aria-pressed="true"  onclick="setLang('de')">🇩🇪 Deutsch</button>
+    <button id="btn-en" aria-pressed="false" onclick="setLang('en')">🇬🇧 English</button>
+  </div>
+
+  <div class="stores">
+    <a class="store" href="https://play.google.com/store/apps/details?id=com.neftiapps.cashya">Google Play</a>
+    <a class="store alt" href="https://apps.apple.com/app/id6766483713">App Store</a>
+  </div>
+
+  <!-- ───────────────── Deutsch ───────────────── -->
+  <div data-lang="de" class="on">
+
+    <section>
+      <h2>Was Cashya macht</h2>
+      <p>Cashya ist eine persönliche Finanz-App für iOS und Android. Du erfasst Einnahmen und
+         Ausgaben, ordnest sie Kategorien zu und siehst auf einen Blick, wohin dein Geld fliesst.</p>
+      <p>Das Besondere: Jede Ausgabe wird automatisch als <strong>Muss</strong>, <strong>Sollte</strong>
+         oder <strong>Luxus</strong> eingestuft. So erkennst du sofort, welche Kosten unvermeidbar sind
+         und wo tatsächlich Spielraum besteht.</p>
+    </section>
+
+    <section>
+      <h2>Funktionen</h2>
+      <ul>
+        <li><strong>Prioritäten-System</strong> — Muss, Sollte und Luxus werden über Unterkategorien automatisch vergeben</li>
+        <li><strong>Kategorien</strong> — frei anpassbar mit eigenen Symbolen und Farben</li>
+        <li><strong>Wiederkehrende Buchungen</strong> — Miete, Lohn oder Abos einmal anlegen, täglich bis monatlich</li>
+        <li><strong>Mehrere Konten</strong> — optional, mit Umbuchungen zwischen den Konten</li>
+        <li><strong>Vermögensübersicht</strong> — Verlauf über die Zeit, gesamt und je Konto</li>
+        <li><strong>Analysen</strong> — Cashflow, Ausgaben nach Kategorie, Sparquote</li>
+        <li><strong>Backup</strong> — lokal oder in deinem Google Drive, immer AES-256-verschlüsselt</li>
+        <li><strong>14 Sprachen</strong> und frei wählbare Währung</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Deine Daten bleiben bei dir</h2>
+      <p>Alle Finanzdaten liegen ausschliesslich auf deinem Gerät. Es gibt kein Nutzerkonto,
+         keine Werbung, keine Analyse-Dienste und kein Tracking. Wir haben keinen Zugriff auf
+         deine Daten und verkaufen keine Daten.</p>
+      <p class="muted">Backups in die Cloud sind optional und standardmässig deaktiviert. Wenn du sie
+         einschaltest, landen sie verschlüsselt in deinem eigenen iCloud- oder Google-Drive-Konto.</p>
+    </section>
+
+    <section>
+      <h2>Preise</h2>
+      <p>Cashya ist kostenlos nutzbar. Die Gratisversion erlaubt eine begrenzte Anzahl Einträge;
+         bereits erfasste Daten bleiben dabei immer vollständig sichtbar.</p>
+      <p>Cashya Premium hebt diese Grenze auf und ist als Monats-, Jahres- oder einmaliges
+         Lifetime-Paket erhältlich. Die Abwicklung läuft über Google Play beziehungsweise Apple.</p>
+    </section>
+
+    <section>
+      <h2>Kontakt &amp; Support</h2>
+      <p>Fragen, Rückmeldungen oder Verbesserungsvorschläge sind willkommen:
+         <a href="mailto:neftiapps@gmail.com" style="color:var(--accent)">neftiapps@gmail.com</a></p>
+      <p class="muted">Entwickelt von Mario Lüthy, Schweiz.</p>
+    </section>
+
+  </div>
+
+  <!-- ───────────────── English ───────────────── -->
+  <div data-lang="en">
+
+    <section>
+      <h2>What Cashya does</h2>
+      <p>Cashya is a personal finance app for iOS and Android. You record income and expenses,
+         assign them to categories, and see at a glance where your money goes.</p>
+      <p>What makes it different: every expense is automatically classified as <strong>Must</strong>,
+         <strong>Should</strong> or <strong>Luxury</strong>. That shows you immediately which costs
+         are unavoidable and where you actually have room to move.</p>
+    </section>
+
+    <section>
+      <h2>Features</h2>
+      <ul>
+        <li><strong>Priority system</strong> — Must, Should and Luxury assigned automatically through subcategories</li>
+        <li><strong>Categories</strong> — fully customisable with your own icons and colours</li>
+        <li><strong>Recurring entries</strong> — set up rent, salary or subscriptions once, daily to monthly</li>
+        <li><strong>Multiple accounts</strong> — optional, including transfers between accounts</li>
+        <li><strong>Wealth overview</strong> — development over time, in total and per account</li>
+        <li><strong>Analysis</strong> — cash flow, spending by category, savings rate</li>
+        <li><strong>Backup</strong> — locally or to your own Google Drive, always AES-256 encrypted</li>
+        <li><strong>14 languages</strong> and a freely selectable currency</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Your data stays with you</h2>
+      <p>All financial data is stored exclusively on your device. There is no user account,
+         no advertising, no analytics services and no tracking. We have no access to your data
+         and we do not sell data.</p>
+      <p class="muted">Cloud backups are optional and disabled by default. If you enable them,
+         they are stored encrypted in your own iCloud or Google Drive account.</p>
+    </section>
+
+    <section>
+      <h2>Pricing</h2>
+      <p>Cashya is free to use. The free version allows a limited number of entries; data you have
+         already recorded always remains fully visible.</p>
+      <p>Cashya Premium removes that limit and is available as a monthly, yearly or one-time
+         lifetime purchase, handled through Google Play or Apple.</p>
+    </section>
+
+    <section>
+      <h2>Contact &amp; support</h2>
+      <p>Questions, feedback or suggestions are welcome:
+         <a href="mailto:neftiapps@gmail.com" style="color:var(--accent)">neftiapps@gmail.com</a></p>
+      <p class="muted">Developed by Mario Lüthy, Switzerland.</p>
+    </section>
+
+  </div>
+
+  <footer>
+    <div>
+      <a href="https://sviraci.github.io/cashya-privacy/">
+        <span data-lang="de" class="on" style="display:inline">Datenschutzerklärung</span><span data-lang="en" style="display:none">Privacy Policy</span>
+      </a>
+      <span class="sep">·</span>
+      <a href="terms.html">
+        <span data-lang="de" class="on" style="display:inline">Nutzungsbedingungen</span><span data-lang="en" style="display:none">Terms of Service</span>
+      </a>
+      <span class="sep">·</span>
+      <a href="mailto:neftiapps@gmail.com">neftiapps@gmail.com</a>
+    </div>
+    <div class="muted">© 2026 Mario Lüthy · Schweiz / Switzerland</div>
+  </footer>
+
+</div>
+
+<script>
+  function setLang(l){
+    document.documentElement.lang = l;
+    document.querySelectorAll('[data-lang]').forEach(function(el){
+      var match = el.getAttribute('data-lang') === l;
+      if (el.tagName === 'SPAN') {
+        el.style.display = match ? 'inline' : 'none';
+        el.classList.toggle('on', match);
+      } else {
+        el.classList.toggle('on', match);
+      }
+    });
+    document.getElementById('btn-de').setAttribute('aria-pressed', String(l === 'de'));
+    document.getElementById('btn-en').setAttribute('aria-pressed', String(l === 'en'));
+    try { localStorage.setItem('cashya-lang', l); } catch (e) {}
+  }
+  (function(){
+    var saved = null;
+    try { saved = localStorage.getItem('cashya-lang'); } catch (e) {}
+    var l = saved || ((navigator.language || 'de').toLowerCase().indexOf('de') === 0 ? 'de' : 'en');
+    setLang(l);
+  })();
+</script>
+</body>
+</html>
